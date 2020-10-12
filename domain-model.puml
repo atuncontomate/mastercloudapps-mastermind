@@ -153,18 +153,18 @@ MasterMind *--> Turn
 MasterMind ...> YesNoDialog
 MakerPlayer ...> Message
 
-Board *--> Result
+Board *--> "10" Result
 Board ...> Console
 Board ...> Message
 
-Turn *--> Player
+Turn *--> "2" Player
 Turn ...> Message
 
-Result *--> Combination
-Result *--> Sucess
+Result *--> "1" Combination
+Result *--> "4" Sucess
 Result ...> Console
 
-Player ---> Board
+Player ---> "1" Board
 MakerPlayer *--> "1" Combination
 MakerPlayer ...> Success
 
