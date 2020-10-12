@@ -1,91 +1,91 @@
 @startuml
 class MasterMind {
-    private Board board
-    private Turn turn
+    - Board board
+    - Turn turn
 
-    private void play()
-    private void playGame()
-    private boolean isResumedGame()
-    public static void main(String[] args)
+    - void play()
+    - void playGame()
+    - boolean isResumedGame()
+    + {static} void main(String[] args)
 }
 
 class Board {
-    private final int NUMBER_RESULTS
-    private Result[] results
-    private int lastResult
+    - final int NUMBER_RESULTS
+    - Result[] results
+    - int lastResult
 
-    public Board(int numResults)
+    + Board(int numResults)
 
-    public void putResult(Result result)
-    public Result getLastResult()
-    public boolean isEndedGame()
-    public boolean isBreakerWinner()
-    public void increaseLastResult()
-    public void write()
-    public void writeWinner()
+    + void putResult(Result result)
+    + Result getLastResult()
+    + boolean isEndedGame()
+    + boolean isBreakerWinner()
+    + void increaseLastResult()
+    + void write()
+    + void writeWinner()
 }
 
 class Turn {
-    private static final int NUMBER_PLAYERS
-    private Player[] players
-    private int activePlayer
+    - {static} final int NUMBER_PLAYERS
+    - Player[] players
+    - int activePlayer
 
-    public Turn(Board board)
+    + Turn(Board board)
 
-    public void play()
-    public Player getActivePlayer()
+    + void play()
+    + Player getActivePlayer()
 }
 
 class Result {
-    private Combination combination
-    private Success[] hits
-    private int order
+    - Combination combination
+    - Success[] hits
+    - int order
 
-    public Result(int order)
+    + Result(int order)
 
-    public void putHits(Success[] hits)
-    public boolean emptyCombination()
-    public Combination getCombination()
-    public int getOrder()
-    public boolean isWinnerResult()
-    public void writeNumberBlackSuccess()
-    public void writeNumberWhiteSuccess()
+    + void putHits(Success[] hits)
+    + boolean emptyCombination()
+    + Combination getCombination()
+    + int getOrder()
+    + boolean isWinnerResult()
+    + void writeNumberBlackSuccess()
+    + void writeNumberWhiteSuccess()
 }
 
 
 abstract class Player {
-    protected Board board;
+    # Board board;
 
-    public Player(Board board)
+    + Player(Board board)
 
-    public void play()
+    + void play()
     abstract Result getResult()
 }
 
 class BreakerPlayer extends Player{
-    public Result getResult()
+    + Result getResult()
 }
 
 class MakerPlayer extends Player{
-    private Combination secretCombination
-    public Result getResult()
+    - Combination secretCombination
+    + Result getResult()
 }
 
 class Combination {
-    public static final int COMBINATION_LENGTH
-    private static final String EMPTY_COMBINATION
-    private static final String PROPOSE_COMBINATION
-    private String content;
+    + {static} final int COMBINATION_LENGTH
+    - {static} final String EMPTY_COMBINATION
+    - {static} final String PROPOSE_COMBINATION
+    - String content;
 
-    public Combination()
-    public Combination(String content)
+    + Combination()
+    + Combination(String content)
 
-    public Success[] getCombinationHits(Combination proposedCombination)
-    public static Combination random()
-    public boolean isEmpty()
-    public boolean isValid()
-    public void read()
-    public void write()
+    + Success[] getCombinationHits(Combination proposedCombination)
+    + {static} Combination random()
+    + boolean isEmpty()
+    + boolean isValid()
+    + void read()
+    + void write()
 }
 
 enum Success {
@@ -93,7 +93,7 @@ enum Success {
 	WHITE
 	NULL_SUCCESS
 
-	public boolean isNull()
+	+ boolean isNull()
 }
 enum Color {
 	RED
@@ -104,11 +104,11 @@ enum Color {
 	PINK
 	NULL_COLOR
 
-	private char symbol
+	- char symbol
 
 	Color(char symbol)
 
-	public static Color valueOfColorSymbol
+	+ {static} Color valueOfColorSymbol
 }
 
 enum Error {
@@ -116,7 +116,7 @@ enum Error {
 	WRONG_COLORS
 	NULL_ERROR
 
-	private String message;
+	- String message;
 
 	Error()
 	Error(String message)
@@ -136,7 +136,7 @@ enum Message {
     RESUME
     NULL_MESSAGE
 
-    private String message;
+    - String message;
 
     Message()
     Message(String message)
