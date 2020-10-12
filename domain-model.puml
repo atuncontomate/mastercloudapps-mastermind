@@ -1,0 +1,175 @@
+@startuml
+class MasterMind {
+    private Board board
+    private Turn turn
+
+    private void play()
+    private void playGame()
+    private boolean isResumedGame()
+    public static void main(String[] args)
+}
+
+class Board {
+    private final int NUMBER_RESULTS
+    private Result[] results
+    private int lastResult
+
+    public Board(int numResults)
+
+    public void putResult(Result result)
+    public Result getLastResult()
+    public boolean isEndedGame()
+    public boolean isBreakerWinner()
+    public void increaseLastResult()
+    public void write()
+    public void writeWinner()
+}
+
+class Turn {
+    private static final int NUMBER_PLAYERS
+    private Player[] players
+    private int activePlayer
+
+    public Turn(Board board)
+
+    public void play()
+    public Player getActivePlayer()
+}
+
+class Result {
+    private Combination combination
+    private Success[] hits
+    private int order
+
+    public Result(int order)
+
+    public void putHits(Success[] hits)
+    public boolean emptyCombination()
+    public Combination getCombination()
+    public int getOrder()
+    public boolean isWinnerResult()
+    public void writeNumberBlackSuccess()
+    public void writeNumberWhiteSuccess()
+}
+
+
+abstract class Player {
+    protected Board board;
+
+    public Player(Board board)
+
+    public void play()
+    abstract Result getResult()
+}
+
+class BreakerPlayer extends Player{
+    public Result getResult()
+}
+
+class MakerPlayer extends Player{
+    private Combination secretCombination
+    public Result getResult()
+}
+
+class Combination {
+    public static final int COMBINATION_LENGTH
+    private static final String EMPTY_COMBINATION
+    private static final String PROPOSE_COMBINATION
+    private String content;
+
+    public Combination()
+    public Combination(String content)
+
+    public Success[] getCombinationHits(Combination proposedCombination)
+    public static Combination random()
+    public boolean isEmpty()
+    public boolean isValid()
+    public void read()
+    public void write()
+}
+
+enum Success {
+	BLACK
+	WHITE
+	NULL_SUCCESS
+
+	public boolean isNull()
+}
+enum Color {
+	RED
+	BLUE
+	YELLOW
+	GREEN
+	ORANGE
+	PINK
+	NULL_COLOR
+
+	private char symbol
+
+	Color(char symbol)
+
+	public static Color valueOfColorSymbol
+}
+
+enum Error {
+	WRONG_LENGTH
+	WRONG_COLORS
+	NULL_ERROR
+
+	private String message;
+
+	Error()
+	Error(String message)
+
+	void writeln()
+}
+
+enum Message {
+    TITTLE
+    ATTEMPTS
+    POSITIONS_SAMPLE
+    COMBINATION_HITS_SEPARATOR
+    BLACKS_AND
+    WHITES
+    BREAKER_WON
+    BREAKER_LOST
+    RESUME
+    NULL_MESSAGE
+
+    private String message;
+
+    Message()
+    Message(String message)
+
+    void write()
+    void writeln()
+}
+
+class Console
+class YesNoDialog
+
+MasterMind *--> Board
+MasterMind *--> Turn
+MasterMind ...> YesNoDialog
+MakerPlayer ...> Message
+
+Board *--> Result
+Board ...> Console
+Board ...> Message
+
+Turn *--> Player
+Turn ...> Message
+
+Result *--> Combination
+Result *--> Sucess
+Result ...> Console
+
+Player ---> Board
+MakerPlayer *--> "1" Combination
+MakerPlayer ...> Success
+
+Combination ...> Console
+Combination ...> Color
+Combination ...> Error
+
+@enduml
