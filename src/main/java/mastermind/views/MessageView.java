@@ -1,9 +1,9 @@
 package mastermind.views;
 
 import mastermind.models.Message;
-import utils.Console;
+import utils.WithConsoleView;
 
-public class MessageView {
+public class MessageView extends WithConsoleView {
 
     private Message message;
 
@@ -12,15 +12,15 @@ public class MessageView {
     }
 
     public void write() {
-        Console.instance().write(message.getContent());
+        this.console.write(message.getContent());
     }
 
     public void writeln() {
-        Console.instance().writeln(message.getContent());
+        this.console.writeln(message.getContent());
     }
 
     public void writeln(int blacks, int whites) {
         assert message == Message.RESULT;
-        Console.instance().writeln(message.getContent().replaceFirst("#blacks", "" + blacks).replaceFirst("#whites", "" + whites));
+        this.console.writeln(message.getContent().replaceFirst("#blacks", "" + blacks).replaceFirst("#whites", "" + whites));
     }
 }

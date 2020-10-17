@@ -16,8 +16,8 @@ public enum Error {
 		this.message = message;
 	}
 
-	public boolean isNull() {
-		return Error.NULL_ERROR == this;
+	public boolean notNull() {
+		return Error.NULL_ERROR != this;
 	}
 
 	public String getMessage(){

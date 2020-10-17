@@ -1,9 +1,9 @@
 package mastermind.models;
 
 public enum Message {
-    TITTLE("----- MASTERMIND -----"),
+    TITLE("----- MASTERMIND -----"),
     ATTEMPTS(" attempt(s):"),
-    POSITIONS_SAMPLE("xxxx"),
+    SECRET("x"),
     RESULT(" --> #blacks blacks and #whites whites"),
     BREAKER_WON("You've won!!! ;-)"),
     BREAKER_LOST("You've lost!!! :-("),

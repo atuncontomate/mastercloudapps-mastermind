@@ -1,9 +1,9 @@
 package mastermind.views;
 
 import mastermind.models.Error;
-import utils.Console;
+import utils.WithConsoleView;
 
-public class ErrorView {
+public class ErrorView extends WithConsoleView {
 
     private Error error;
 
@@ -13,6 +13,6 @@ public class ErrorView {
 
     public void writeln() {
         assert error != Error.NULL_ERROR;
-        Console.instance().writeln(error.getMessage());
+        this.console.writeln(error.getMessage());
     }
 }

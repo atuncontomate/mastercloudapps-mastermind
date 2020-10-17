@@ -16,4 +16,8 @@ public abstract class Combination {
     public List<Color> getColors(){
         return colors;
     }
+
+    public static int getWidth(){
+        return COMBINATION_LENGTH;
+    }
 }

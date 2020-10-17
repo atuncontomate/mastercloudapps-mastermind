@@ -2,8 +2,9 @@ package mastermind.views;
 
 import mastermind.models.Message;
 import mastermind.models.Result;
+import utils.WithConsoleView;
 
-public class ResultView {
+public class ResultView extends WithConsoleView {
 
     private Result result;
 

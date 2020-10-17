@@ -2,9 +2,9 @@ package mastermind.views;
 
 import mastermind.models.Board;
 import mastermind.models.Message;
-import utils.Console;
+import utils.WithConsoleView;
 
-public class BoardView {
+public class BoardView extends WithConsoleView {
 
     private Board board;
 
@@ -13,10 +13,10 @@ public class BoardView {
     }
 
     public void write(){
-        Console.instance().writeln();
-        Console.instance().write(board.getAttempts());
+        this.console.writeln();
+        this.console.write(board.getAttempts());
         new MessageView(Message.ATTEMPTS).writeln();
-        new MessageView(Message.POSITIONS_SAMPLE).writeln();
+        new SecretCombinationView().writeln();
 
         for(int i = 0; i< board.getAttempts(); i++){
             new ProposedCombinationView(board.getAttemptProposedCombination(i)).write();

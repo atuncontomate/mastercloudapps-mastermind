@@ -10,6 +10,10 @@ public class Board {
     private int attempts;
 
     public Board() {
+        this.clear();
+    }
+
+    public void clear() {
         this.secretCombination = new SecretCombination();
         this.proposedCombinations = new ProposedCombination[MAX_ATTEMPS];
         this.results = new Result[MAX_ATTEMPS];

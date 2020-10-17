@@ -2,9 +2,9 @@ package mastermind.views;
 
 import mastermind.models.*;
 import mastermind.models.Error;
-import utils.Console;
+import utils.WithConsoleView;
 
-public class ProposedCombinationView {
+public class ProposedCombinationView extends WithConsoleView {
 
     private ProposedCombination proposedCombination;
 
@@ -22,12 +22,12 @@ public class ProposedCombinationView {
         Error error;
         do {
             new MessageView(Message.PROPOSE_COMBINATION).write();
-            error = this.checkError(Console.instance().readString());
+            error = this.checkError(this.console.readString());
             new ErrorView(error).writeln();
-            if (!error.isNull()) {
+            if (error.notNull()) {
                 proposedCombination = new ProposedCombination();
             }
-        } while (!error.isNull());
+        } while (error.notNull());
     }
 
     private Error checkError(String characters){
