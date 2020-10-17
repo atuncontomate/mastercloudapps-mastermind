@@ -1,11 +1,18 @@
 package mastermind;
 
+import mastermind.models.Board;
+import mastermind.models.Message;
+import mastermind.models.ProposedCombination;
+import mastermind.views.BoardView;
+import mastermind.views.MessageView;
+import mastermind.views.ProposedCombinationView;
 import utils.YesNoDialog;
 
 public class MasterMind {
 
     private Board board;
-    private Turn turn;
+
+    private BoardView boardView;
 
     private void play() {
         do {
@@ -14,14 +21,18 @@ public class MasterMind {
     }
 
     private void playGame() {
-        this.board = new Board(10);
-        this.turn = new Turn(this.board);
-        this.board.write();
+        new MessageView(Message.TITTLE).writeln();
+        this.board = new Board();
+        this.boardView = new BoardView(board);
+        boardView.write();
+
         do {
-            this.turn.play();
-            this.board.write();
+            ProposedCombination proposedCombination = new ProposedCombination();
+            new ProposedCombinationView(proposedCombination).read();
+            this.board.add(proposedCombination);
+            this.boardView.write();
         } while (!this.board.isEndedGame());
-        this.board.writeWinner();
+        this.boardView.writeWinner();
     }
 
     private boolean isResumedGame() {

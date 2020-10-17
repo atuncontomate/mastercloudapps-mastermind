@@ -1,11 +1,10 @@
-package mastermind;
+package mastermind.models;
 
-import utils.Console;
-
-enum Error {
+public enum Error {
 
 	WRONG_LENGTH("Wrong proposed combination length"),
 	WRONG_COLORS("Wrong colors, they must be: rbygop"),
+	DUPLICATED("Repeated colors"),
 	NULL_ERROR;
 
 	private String message;
@@ -17,10 +16,11 @@ enum Error {
 		this.message = message;
 	}
 
-	void writeln() {
-		if (this != Error.NULL_ERROR){
-			Console.instance().writeln(this.message);
-		}
+	public boolean isNull() {
+		return Error.NULL_ERROR == this;
 	}
 
+	public String getMessage(){
+		return message;
+	}
 }

@@ -29,21 +29,6 @@ public class Console {
         return this.readString("");
     }
 
-    public int readInt(String title) {
-        int input = 0;
-        boolean ok = false;
-        do {
-            try {
-                input = Integer.parseInt(this.readString(title));
-                ok = true;
-            } catch (Exception ex) {
-                this.writeError("integer");
-            }
-            assert ok;
-        } while (!ok);
-        return input;
-    }
-
     public char readChar(String title) {
         char charValue = ' ';
         boolean ok = false;
@@ -74,10 +59,6 @@ public class Console {
 
     public void writeln(String string) {
         System.out.println(string);
-    }
-
-    public void writeln(int integer) {
-        System.out.println(integer);
     }
 
     public void write(char character) {
