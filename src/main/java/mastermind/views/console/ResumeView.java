@@ -12,6 +12,7 @@ public class ResumeView extends WithConsoleView {
     public ResumeView(Board board) {
         this.board = board;
     }
+
     public boolean interact() {
         new MessageView(Message.RESUME).write();
         boolean newGame = new YesNoDialog().read(Message.RESUME.toString());

@@ -1,21 +1,14 @@
 package mastermind;
 
 import mastermind.models.Board;
-import mastermind.views.graphics.MainView;
+import mastermind.views.MainView;
+import mastermind.views.graphics.GraphicsMainView;
 
-public class GraphicsMasterMind {
+public class GraphicsMasterMind extends MasterMind{
 
-    private Board board;
-
-    private MainView view;
-
-    private GraphicsMasterMind() {
-        this.board = new Board();
-        this.view = new MainView(this.board);
-    }
-
-    private void play() {
-        this.view.interact();
+    @Override
+    protected MainView createView(Board game) {
+        return new GraphicsMainView(game);
     }
 
     public static void main(String[] args) {

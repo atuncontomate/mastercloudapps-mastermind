@@ -1,23 +1,23 @@
-package mastermind.views.graphics;
+package mastermind.views.console;
 
 import mastermind.models.Board;
 
-public class MainView extends mastermind.views.MainView {
+public class ConsoleMainView extends mastermind.views.MainView {
 
     private StartView startView;
     private ProposalView proposalView;
     private ResumeView resumeView;
 
-    public MainView(Board board) {
+    public ConsoleMainView(Board board) {
         super(board);
         this.startView = new StartView();
-        this.proposalView = new ProposalView(this.board);
-        this.resumeView = new ResumeView(this.board);
+        this.proposalView = new ProposalView(board);
+        this.resumeView = new ResumeView(board);
     }
 
     @Override
     protected void start(){
-        this.startView.show();
+        this.startView.interact();
     }
 
     @Override
