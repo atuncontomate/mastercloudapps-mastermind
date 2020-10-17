@@ -1,4 +1,4 @@
-package mastermind.views;
+package mastermind.views.console;
 
 import mastermind.models.Board;
 import mastermind.models.ProposedCombination;

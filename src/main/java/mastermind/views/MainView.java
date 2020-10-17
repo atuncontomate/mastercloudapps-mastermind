@@ -2,32 +2,24 @@ package mastermind.views;
 
 import mastermind.models.Board;
 
-public class MainView {
-
+public abstract class MainView {
     protected Board board;
-
-    private StartView startView;
-
-    private ProposalView proposalView;
-
-    private ResumeView resumeView;
 
     public MainView(Board board) {
         this.board = board;
-        this.startView = new StartView();
-        this.proposalView = new ProposalView(this.board);
-        this.resumeView = new ResumeView(this.board);
     }
 
     public void interact() {
-        boolean newGame;
         do {
-            this.startView.interact();
+            this.start();
             boolean finished;
             do {
-                finished = this.proposalView.interact();
+                finished = this.propose();
             } while (!finished);
-            newGame = this.resumeView.interact();
-        } while (newGame);
+        } while (this.resume());
     }
+
+    protected abstract void start();
+    protected abstract boolean propose();
+    protected abstract boolean resume();
 }
