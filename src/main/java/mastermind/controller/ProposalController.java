@@ -39,4 +39,9 @@ public class ProposalController extends Controller {
         return this.board.getAttemptResult(attempt);
     }
 
+    @Override
+    public void accept(ControllerVisitor controllerVisitor) {
+        controllerVisitor.visit(this);
+    }
+
 }

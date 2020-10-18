@@ -1,12 +1,9 @@
 package mastermind.views.console;
 
-import mastermind.controller.Controller;
-import mastermind.controller.ProposalController;
-import mastermind.controller.ResumeController;
-import mastermind.controller.StartController;
+import mastermind.controller.*;
 import mastermind.views.MainView;
 
-public class ConsoleMainView extends MainView {
+public class ConsoleMainView extends MainView implements ControllerVisitor {
 
     private StartView startView;
     private ProposalView proposalView;
@@ -19,14 +16,19 @@ public class ConsoleMainView extends MainView {
     }
 
     @Override
-    public void interact(Controller controller){
-        if (controller instanceof StartController) {
-            this.startView.interact((StartController) controller);
-        } else if (controller instanceof ProposalController){
-            this.proposalView.interact((ProposalController) controller);
-        } else {
-            this.resumeView.interact((ResumeController) controller);
-        }
+    public void interact(Controller controller) {
+        controller.accept(this);
+    }
+
+    public void visit(StartController startController) {
+        this.startView.interact(startController);
+    }
+
+    public void visit(ProposalController proposalController) {
+        this.proposalView.interact(proposalController);	}
+
+    public void visit(ResumeController resumeController) {
+        this.resumeView.interact(resumeController);
     }
 
 }
