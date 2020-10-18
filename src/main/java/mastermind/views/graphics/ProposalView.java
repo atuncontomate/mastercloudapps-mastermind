@@ -1,13 +1,13 @@
 package mastermind.views.graphics;
 
-import mastermind.models.Board;
+import mastermind.controller.ProposalController;
 
 public class ProposalView {
 
-    private Board board;
+    private ProposalController proposalController;
 
-    public ProposalView(Board board) {
-        this.board = board;
+    public ProposalView(ProposalController proposalController) {
+        this.proposalController = proposalController;
     }
 
     public boolean interact() {

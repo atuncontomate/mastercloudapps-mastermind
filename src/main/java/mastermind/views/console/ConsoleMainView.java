@@ -1,18 +1,20 @@
 package mastermind.views.console;
 
-import mastermind.models.Board;
+import mastermind.controller.ProposalController;
+import mastermind.controller.ResumeController;
+import mastermind.views.MainView;
 
-public class ConsoleMainView extends mastermind.views.MainView {
+public class ConsoleMainView extends MainView {
 
     private StartView startView;
     private ProposalView proposalView;
     private ResumeView resumeView;
 
-    public ConsoleMainView(Board board) {
-        super(board);
+    public ConsoleMainView(ProposalController proposalController,
+                           ResumeController resumeController) {
         this.startView = new StartView();
-        this.proposalView = new ProposalView(board);
-        this.resumeView = new ResumeView(board);
+        this.proposalView = new ProposalView(proposalController);
+        this.resumeView = new ResumeView(resumeController);
     }
 
     @Override

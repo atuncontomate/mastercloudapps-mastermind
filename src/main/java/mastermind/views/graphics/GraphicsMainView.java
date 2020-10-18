@@ -1,18 +1,20 @@
 package mastermind.views.graphics;
 
-import mastermind.models.Board;
+import mastermind.controller.ProposalController;
+import mastermind.controller.ResumeController;
+import mastermind.views.MainView;
 
-public class GraphicsMainView extends mastermind.views.MainView {
+public class GraphicsMainView extends MainView {
 
     private StartView startView;
     private ProposalView proposalView;
     private ResumeView resumeView;
 
-    public GraphicsMainView(Board board) {
-        super(board);
+    public GraphicsMainView(ProposalController proposalController,
+                            ResumeController resumeController) {
         this.startView = new StartView();
-        this.proposalView = new ProposalView(this.board);
-        this.resumeView = new ResumeView(this.board);
+        this.proposalView = new ProposalView(proposalController);
+        this.resumeView = new ResumeView(resumeController);
     }
 
     @Override

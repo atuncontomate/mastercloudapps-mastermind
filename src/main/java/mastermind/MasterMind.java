@@ -1,5 +1,7 @@
 package mastermind;
 
+import mastermind.controller.ProposalController;
+import mastermind.controller.ResumeController;
 import mastermind.models.Board;
 import mastermind.views.MainView;
 
@@ -11,10 +13,10 @@ public abstract class MasterMind {
 
     protected MasterMind() {
         this.board = new Board();
-        this.view = this.createView(board);
+        this.view = this.createView(new ProposalController(board), new ResumeController(board));
     }
 
-    protected abstract MainView createView(Board game);
+    protected abstract MainView createView(ProposalController proposalController, ResumeController resumeController);
 
     protected void play() {
         this.view.interact();

@@ -1,13 +1,6 @@
 package mastermind.views;
 
-import mastermind.models.Board;
-
 public abstract class MainView {
-    protected Board board;
-
-    public MainView(Board board) {
-        this.board = board;
-    }
 
     public void interact() {
         do {

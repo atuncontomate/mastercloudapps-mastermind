@@ -1,13 +1,13 @@
 package mastermind.views.graphics;
 
-import mastermind.models.Board;
+import mastermind.controller.ResumeController;
 
 public class ResumeView {
 
-    private Board board;
+    private ResumeController resumeController;
 
-    public ResumeView(Board board) {
-        this.board = board;
+    public ResumeView(ResumeController resumeController) {
+        this.resumeController = resumeController;
     }
 
     public boolean interact() {

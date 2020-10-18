@@ -1,23 +1,23 @@
 package mastermind.views.console;
 
-import mastermind.models.Board;
+import mastermind.controller.ResumeController;
 import mastermind.models.Message;
 import utils.WithConsoleView;
 import utils.YesNoDialog;
 
 public class ResumeView extends WithConsoleView {
 
-    private Board board;
+    private ResumeController resumeController;
 
-    public ResumeView(Board board) {
-        this.board = board;
+    public ResumeView(ResumeController resumeController) {
+        this.resumeController = resumeController;
     }
 
     public boolean interact() {
         new MessageView(Message.RESUME).write();
         boolean newGame = new YesNoDialog().read(Message.RESUME.toString());
         if (newGame) {
-            this.board.clear();
+            this.resumeController.clear();
         }
         return newGame;
     }
