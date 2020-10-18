@@ -6,24 +6,21 @@ import utils.WithConsoleView;
 
 public class ProposalView extends WithConsoleView {
 
-    private ProposalController proposalController;
-
     private BoardView boardView;
 
-    public ProposalView(ProposalController proposalController) {
-        this.proposalController = proposalController;
-        this.boardView = new BoardView(proposalController);
+    public ProposalView() {
+        this.boardView = new BoardView();
     }
 
-    public boolean interact() {
+    public boolean interact(ProposalController proposalController) {
         ProposedCombination proposedCombination = new ProposedCombination();
         new ProposedCombinationView(proposedCombination).read();
-        this.proposalController.add(proposedCombination);
-        this.boardView.write();
-        boolean isEndedGame = this.proposalController.isEndedGame();
+        proposalController.add(proposedCombination);
+        this.boardView.write(proposalController);
+        boolean isEndedGame = proposalController.isEndedGame();
 
         if(isEndedGame){
-            this.boardView.writeWinner();
+            this.boardView.writeWinner(proposalController);
         }
         return isEndedGame;
     }

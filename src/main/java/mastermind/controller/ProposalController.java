@@ -3,11 +3,12 @@ package mastermind.controller;
 import mastermind.models.Board;
 import mastermind.models.ProposedCombination;
 import mastermind.models.Result;
+import mastermind.models.State;
 
 public class ProposalController extends Controller {
 
-    public ProposalController(Board board) {
-        super(board);
+    public ProposalController(Board board, State state) {
+        super(board, state);
     }
 
     public void add(ProposedCombination proposedCombination) {
@@ -15,7 +16,11 @@ public class ProposalController extends Controller {
     }
 
     public boolean isEndedGame() {
-        return this.board.isEndedGame();
+        boolean isEndedGame = this.board.isEndedGame();
+        if(isEndedGame){
+            this.state.next();
+        }
+        return isEndedGame;
     }
 
     public int getAttempts() {

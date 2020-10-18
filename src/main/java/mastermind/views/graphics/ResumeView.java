@@ -4,13 +4,7 @@ import mastermind.controller.ResumeController;
 
 public class ResumeView {
 
-    private ResumeController resumeController;
-
-    public ResumeView(ResumeController resumeController) {
-        this.resumeController = resumeController;
-    }
-
-    public boolean interact() {
+    public boolean interact(ResumeController resumeController) {
         // TODO: This view has to show resume interaction content.
         return false;
     }

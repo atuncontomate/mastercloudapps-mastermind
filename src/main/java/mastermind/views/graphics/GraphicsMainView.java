@@ -1,7 +1,9 @@
 package mastermind.views.graphics;
 
+import mastermind.controller.Controller;
 import mastermind.controller.ProposalController;
 import mastermind.controller.ResumeController;
+import mastermind.controller.StartController;
 import mastermind.views.MainView;
 
 public class GraphicsMainView extends MainView {
@@ -10,26 +12,21 @@ public class GraphicsMainView extends MainView {
     private ProposalView proposalView;
     private ResumeView resumeView;
 
-    public GraphicsMainView(ProposalController proposalController,
-                            ResumeController resumeController) {
+    public GraphicsMainView() {
         this.startView = new StartView();
-        this.proposalView = new ProposalView(proposalController);
-        this.resumeView = new ResumeView(resumeController);
+        this.proposalView = new ProposalView();
+        this.resumeView = new ResumeView();
     }
 
     @Override
-    protected void start(){
-        this.startView.show();
-    }
-
-    @Override
-    protected boolean propose(){
-        return this.proposalView.interact();
-    }
-
-    @Override
-    protected boolean resume(){
-        return this.resumeView.interact();
+    public void interact(Controller controller){
+        if (controller instanceof StartController) {
+            this.startView.interact((StartController) controller);
+        } else if (controller instanceof ProposalController){
+            this.proposalView.interact((ProposalController) controller);
+        } else {
+            this.resumeView.interact((ResumeController) controller);
+        }
     }
 
 }

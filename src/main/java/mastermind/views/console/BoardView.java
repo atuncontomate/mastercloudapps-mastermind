@@ -6,13 +6,7 @@ import utils.WithConsoleView;
 
 public class BoardView extends WithConsoleView {
 
-    private ProposalController proposalController;
-
-    public BoardView(ProposalController proposalController){
-        this.proposalController = proposalController;
-    }
-
-    public void write(){
+    public void write(ProposalController proposalController){
         this.console.writeln();
         this.console.write(proposalController.getAttempts());
         new MessageView(Message.ATTEMPTS).writeln();
@@ -24,7 +18,7 @@ public class BoardView extends WithConsoleView {
         }
     }
 
-    public void writeWinner(){
+    public void writeWinner(ProposalController proposalController){
         if(proposalController.isBreakerWinner()){
             new MessageView(Message.BREAKER_WON).writeln();
         } else {
