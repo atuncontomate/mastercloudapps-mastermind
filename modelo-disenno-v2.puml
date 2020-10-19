@@ -1,0 +1,222 @@
+@startuml
+abstract class MasterMind {
+
+    - Logic logic
+    - MainView view
+
+    # MasterMind() 
+    # {abstract} MainView createView()
+    # void play()
+}
+
+class ConsoleMasterMind extends MasterMind{
+
+    # MainView createView()
+    + {static} void main(String[] args)
+
+}
+
+class GraphicsMasterMind extends MasterMind{
+
+    # MainView createView()
+    + {static} void main(String[] args)
+
+}
+
+
+package view {
+
+
+    abstract class MainView {
+    
+        + {abstract} void interact(Controller controller)
+    }
+    
+    class ConsoleMainView extends MainView implements ControllerVisitor {
+    
+        - StartView startView;
+        - ProposalView proposalView;
+        - ResumeView resumeView;
+    
+        + ConsoleMainView()
+    
+        + void interact(Controller controller)
+        + void visit(StartController startController)
+        + void visit(ProposalController proposalController)
+        + void visit(ResumeController resumeController)
+    }
+    
+    abstract class WithConsoleView
+    
+    class StartView extends WithConsoleView {
+        + void interact(StartController startController)
+    }
+    
+    class ProposalView extends WithConsoleView {
+        + void interact(ProposalController proposalController)
+    }
+    
+    class ResumeView extends WithConsoleView {
+        + void interact(ResumeController resumeController)
+    }
+    
+    class BoardView extends WithConsoleView {
+        + void write(ProposalController proposalController)
+        + void writeWinner(ProposalController proposalController)
+    }
+    
+    ProposalView *--> BoardView
+    
+    class MessageView extends WithConsoleView
+    
+    class ColorView extends WithConsoleView
+    class ErrorView extends WithConsoleView
+    class ProposedCombinationView extends WithConsoleView
+    class SecretCombinationView extends WithConsoleView
+
+}
+
+package controller {
+
+    interface ControllerVisitor{
+        {
+        void visit(StartController startController)
+        void visit(ProposalController proposalController)
+        void visit(ResumeController resumeController)
+    }
+    
+    class Logic {
+        - State state;
+        - Map<StateValue, Controller> controllers;
+    
+        + Logic()
+        + Controller getController()
+    }
+    
+    abstract class Controller {
+    
+        # Board board;
+        # State state;
+    
+        + Controller(Board board, State state)
+        + void next()
+        + {abstract} void accept(ControllerVisitor controllerVisitor)
+    }
+    
+    class StartController extends Controller {
+        + StartController(Board board, State state)
+        + void next()
+        + void accept(ControllerVisitor controllerVisitor)
+    }
+    
+    class ProposalController extends Controller{
+        + ProposalController(Board board, State state)
+        + void add(ProposedCombination proposedCombination)
+        + boolean isEndedGame()
+        + int getAttempts()
+        + boolean isBreakerWinner()
+        + ProposedCombination getAttemptProposedCombination(int attempt)
+        + Result getAttemptResult(int attempt)
+        + void accept(ControllerVisitor controllerVisitor)
+    }
+    
+    class ResumeController extends Controller{
+        + ResumeController(Board board, State state)
+        + void clear()
+        + void accept(ControllerVisitor controllerVisitor)
+    }
+
+
+}
+
+StartView ---> StartController
+ProposalView ---> ProposalController
+ResumeView ---> ResumeController
+
+
+package model {
+
+    class Board {
+    
+        - ProposedCombination[] proposedCombinations
+        - SecretCombination secretCombination
+        - Result[] results
+        - int attempts
+        
+        + Board() 
+        + void clear() 
+        + void add(ProposedCombination proposedCombination) 
+        + boolean isEndedGame() 
+        + boolean isBreakerWinner() 
+        + ProposedCombination getAttemptProposedCombination(int attempt)
+        + Result getAttemptResult(int attempt)
+        + int getAttempts()
+    
+    
+    }
+    
+    abstract class Combination {
+        # List<Color> colors
+        # Combination ()
+        + List<Color> getColors()
+        + static int getWidth()
+    }
+    
+    
+    class ProposedCombination extends Combination {
+        + void add(Color color)
+    }
+    
+    class SecretCombination extends Combination {
+        + SecretCombination()
+        + Result getResult(Combination proposedCombination)
+    }
+    
+    class Result {
+        - int blacks
+        - int whites
+        + Result(int blacks, int whites)
+        + boolean isWinnerResult()
+        + int getBlacks()
+        + int getWhites()
+    }
+    
+    class State {
+        - StateValue stateValue;
+        + State()
+        + void reset()
+        + void next()
+        + StateValue getValueState()
+    }
+    
+    enum Color
+    enum Error
+    enum Message
+    enum StateValue
+    
+    Board *--> ProposedCombination
+    Board *--> SecretCombination
+    Board *--> Result
+    
+    Result ...> Combination
+    
+    Combination o--> Color
+    State ---> StateValue
+}
+
+MasterMind *--> Logic
+MasterMind *--> MainView
+
+BoardView ---> ProposalController
+BoardView ...> MessageView
+MessageView ---> Message
+ErrorView ---> Error
+
+Logic *--> State
+Logic *--> Controller
+
+Controller o--> Board
+Controller o--> State
+
+
+@enduml
