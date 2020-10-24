@@ -39,19 +39,19 @@ public class ProposalController extends Controller implements AcceptorController
         return this.actionController.getAttemptResult(attempt);
     }
 
-    void undo() {
+    public void undo() {
         this.undoController.undo();
     }
 
-    boolean undoable() {
+    public boolean undoable() {
         return this.undoController.undoable();
     }
 
-    void redo() {
+    public void redo() {
         this.redoController.redo();
     }
 
-    boolean redoable() {
+    public boolean redoable() {
         return this.redoController.redoable();
     }
 

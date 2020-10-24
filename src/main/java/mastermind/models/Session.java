@@ -30,6 +30,7 @@ public class Session {
 
     public void add(ProposedCombination proposedCombination) {
         this.board.add(proposedCombination);
+        this.boardRegistry.registry();
     }
 
     public boolean isEndedGame() {
