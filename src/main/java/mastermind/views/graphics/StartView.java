@@ -1,6 +1,6 @@
 package mastermind.views.graphics;
 
-import mastermind.controller.StartController;
+import mastermind.controllers.StartController;
 
 public class StartView {
 

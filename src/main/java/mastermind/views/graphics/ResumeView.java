@@ -1,6 +1,6 @@
 package mastermind.views.graphics;
 
-import mastermind.controller.ResumeController;
+import mastermind.controllers.ResumeController;
 
 public class ResumeView {
 

@@ -1,6 +1,6 @@
 package mastermind.views.console;
 
-import mastermind.controller.StartController;
+import mastermind.controllers.StartController;
 import mastermind.models.Message;
 import utils.WithConsoleView;
 

@@ -1,6 +1,6 @@
 package mastermind.views.graphics;
 
-import mastermind.controller.ProposalController;
+import mastermind.controllers.ProposalController;
 
 public class ProposalView {
 

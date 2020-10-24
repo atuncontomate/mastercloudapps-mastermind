@@ -1,7 +1,7 @@
 package mastermind;
 
-import mastermind.controller.Controller;
-import mastermind.controller.Logic;
+import mastermind.controllers.AcceptorController;
+import mastermind.controllers.Logic;
 import mastermind.views.MainView;
 
 public abstract class MasterMind {
@@ -18,7 +18,7 @@ public abstract class MasterMind {
     protected abstract MainView createView();
 
     protected void play() {
-        Controller controller;
+        AcceptorController controller;
         do {
             controller = this.logic.getController();
             if (controller != null) {

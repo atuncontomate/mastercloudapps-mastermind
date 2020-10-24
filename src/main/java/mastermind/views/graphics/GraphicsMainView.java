@@ -1,6 +1,6 @@
 package mastermind.views.graphics;
 
-import mastermind.controller.*;
+import mastermind.controllers.*;
 import mastermind.views.MainView;
 
 public class GraphicsMainView extends MainView implements ControllerVisitor {
@@ -16,7 +16,7 @@ public class GraphicsMainView extends MainView implements ControllerVisitor {
     }
 
     @Override
-    public void interact(Controller controller){
+    public void interact(AcceptorController controller){
         controller.accept(this);
     }
 

@@ -10,10 +10,10 @@ public class Board {
     private int attempts;
 
     public Board() {
-        this.clear();
+        this.reset();
     }
 
-    public void clear() {
+    public void reset() {
         this.secretCombination = new SecretCombination();
         this.proposedCombinations = new ProposedCombination[MAX_ATTEMPS];
         this.results = new Result[MAX_ATTEMPS];
@@ -27,23 +27,33 @@ public class Board {
     }
 
     public boolean isEndedGame() {
-        return attempts > 0
-                && (results[attempts -1].isWinnerResult() || attempts == MAX_ATTEMPS);
+        return this.attempts > 0
+                && (this.results[this.attempts -1].isWinnerResult() || this.attempts == MAX_ATTEMPS);
     }
 
     public boolean isBreakerWinner() {
-        return results[attempts -1].isWinnerResult();
+        return this.results[this.attempts -1].isWinnerResult();
     }
 
     public ProposedCombination getAttemptProposedCombination(int attempt){
-        return proposedCombinations[attempt];
+        return this.proposedCombinations[attempt];
     }
 
     public Result getAttemptResult(int attempt){
-        return results[attempt];
+        return this.results[attempt];
     }
 
     public int getAttempts(){
-        return attempts;
+        return this.attempts;
+    }
+
+    public Memento createMemento() {
+        return new Memento(this.proposedCombinations, this.results, this.attempts);
+    }
+
+    public void set(Memento memento) {
+        this.proposedCombinations = memento.getProposedCombinations();
+        this.results = memento.getResults();
+        this.attempts = memento.getAttempts();
     }
 }

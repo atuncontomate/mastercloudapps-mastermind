@@ -1,4 +1,4 @@
-package mastermind.controller;
+package mastermind.controllers;
 
 public interface ControllerVisitor {
     void visit(StartController startController);

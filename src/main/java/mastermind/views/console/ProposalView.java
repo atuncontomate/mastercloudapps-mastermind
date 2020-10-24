@@ -1,6 +1,6 @@
 package mastermind.views.console;
 
-import mastermind.controller.ProposalController;
+import mastermind.controllers.ProposalController;
 import mastermind.models.ProposedCombination;
 import utils.WithConsoleView;
 
