@@ -10,7 +10,8 @@ public class UndoCommand extends Command{
 
     @Override
     protected void execute() {
-        // TODO
+        this.proposalController.undo();
+        new BoardView(this.proposalController).write();
     }
 
     @Override

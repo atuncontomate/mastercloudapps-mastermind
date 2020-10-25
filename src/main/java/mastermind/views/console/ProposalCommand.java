@@ -10,7 +10,15 @@ public class ProposalCommand extends Command{
 
     @Override
     protected void execute() {
-        // TODO
+        ProposedCombination proposedCombination = new ProposedCombination();
+        new ProposedCombinationView(proposedCombination).read();
+        this.proposalController.add(proposedCombination);
+        new BoardView().write(proposalController);
+        boolean isEndedGame = proposalController.isEndedGame();
+
+        if(isEndedGame){
+            this.boardView.writeWinner(proposalController);
+        }
     }
 
     @Override

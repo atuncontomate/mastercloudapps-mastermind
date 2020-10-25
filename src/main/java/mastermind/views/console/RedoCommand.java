@@ -10,7 +10,8 @@ public class RedoCommand extends Command{
 
     @Override
     protected void execute() {
-        // TODO
+        this.proposalController.redo();
+        new BoardView(this.proposalController).write();
     }
 
     @Override
