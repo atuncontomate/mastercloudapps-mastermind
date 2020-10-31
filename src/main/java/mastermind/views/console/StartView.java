@@ -1,13 +1,12 @@
 package mastermind.views.console;
 
 import mastermind.controllers.StartController;
-import mastermind.models.Message;
-import utils.WithConsoleView;
+import mastermind.views.Message;
 
-public class StartView extends WithConsoleView {
+public class StartView {
 
     public void interact(StartController startController) {
-        new MessageView(Message.TITLE).writeln();
+        Message.TITLE.writeln();
         new SecretCombinationView().writeln();
         startController.next();
     }

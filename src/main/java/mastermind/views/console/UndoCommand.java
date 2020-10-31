@@ -1,17 +1,17 @@
 package mastermind.views.console;
 
 import mastermind.controllers.ProposalController;
+import mastermind.views.Message;
 
 public class UndoCommand extends Command{
 
     public UndoCommand(ProposalController proposalController){
-        super("", proposalController); //TODO: Título
+        super(Message.UNDO_COMMAND.getContent(), proposalController);
     }
 
     @Override
     protected void execute() {
         this.proposalController.undo();
-        new BoardView(this.proposalController).write();
     }
 
     @Override

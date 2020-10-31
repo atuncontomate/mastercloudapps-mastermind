@@ -1,10 +1,9 @@
 package mastermind.views.console;
 
-import mastermind.models.Message;
+import mastermind.views.Message;
 import mastermind.models.Result;
-import utils.WithConsoleView;
 
-public class ResultView extends WithConsoleView {
+public class ResultView {
 
     private Result result;
 
@@ -13,6 +12,6 @@ public class ResultView extends WithConsoleView {
     }
 
     public void writeln() {
-        new MessageView(Message.RESULT).writeln(result.getBlacks(), result.getWhites());
+        Message.RESULT.writeln(result.getBlacks(), result.getWhites());
     }
 }

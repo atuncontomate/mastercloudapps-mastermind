@@ -1,13 +1,12 @@
 package mastermind;
 
-import mastermind.views.MainView;
-import mastermind.views.console.ConsoleMainView;
+import mastermind.views.console.MainView;
 
 public class ConsoleMasterMind extends MasterMind{
 
     @Override
-    protected MainView createView() {
-        return new ConsoleMainView();
+    protected mastermind.views.MainView createView() {
+        return new MainView();
     }
 
     public static void main(String[] args) {

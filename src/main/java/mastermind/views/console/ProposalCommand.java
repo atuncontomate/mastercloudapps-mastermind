@@ -1,11 +1,14 @@
 package mastermind.views.console;
 
 import mastermind.controllers.ProposalController;
+import mastermind.models.ProposedCombination;
+
+import static mastermind.views.Message.PROPOSE_COMBINATION;
 
 public class ProposalCommand extends Command{
 
     public ProposalCommand(ProposalController proposalController){
-        super("", proposalController); //TODO: Título
+        super(PROPOSE_COMBINATION.getContent(), proposalController);
     }
 
     @Override
@@ -13,11 +16,9 @@ public class ProposalCommand extends Command{
         ProposedCombination proposedCombination = new ProposedCombination();
         new ProposedCombinationView(proposedCombination).read();
         this.proposalController.add(proposedCombination);
-        new BoardView().write(proposalController);
-        boolean isEndedGame = proposalController.isEndedGame();
 
-        if(isEndedGame){
-            this.boardView.writeWinner(proposalController);
+        if(proposalController.isEndedGame()){
+            new BoardView().writeWinner(proposalController);
         }
     }
 

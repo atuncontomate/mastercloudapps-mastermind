@@ -1,15 +1,15 @@
 package mastermind.views.console;
 
 import mastermind.controllers.ProposalController;
-import mastermind.models.Message;
-import utils.WithConsoleView;
+import mastermind.views.Message;
+import utils.Console;
 
-public class BoardView extends WithConsoleView {
+public class BoardView {
 
     public void write(ProposalController proposalController){
-        this.console.writeln();
-        this.console.write(proposalController.getAttempts());
-        new MessageView(Message.ATTEMPTS).writeln();
+        Console.instance().writeln();
+        Console.instance().write(proposalController.getAttempts());
+        Message.ATTEMPTS.writeln();
         new SecretCombinationView().writeln();
 
         for(int i = 0; i< proposalController.getAttempts(); i++){
@@ -20,9 +20,9 @@ public class BoardView extends WithConsoleView {
 
     public void writeWinner(ProposalController proposalController){
         if(proposalController.isBreakerWinner()){
-            new MessageView(Message.BREAKER_WON).writeln();
+            Message.BREAKER_WON.writeln();
         } else {
-            new MessageView(Message.BREAKER_LOST).writeln();
+            Message.BREAKER_LOST.writeln();
         }
     }
 }

@@ -1,10 +1,11 @@
 package mastermind.views.console;
 
 import mastermind.models.*;
-import mastermind.models.Error;
-import utils.WithConsoleView;
+import mastermind.views.Error;
+import mastermind.views.Message;
+import utils.Console;
 
-public class ProposedCombinationView extends WithConsoleView {
+public class ProposedCombinationView {
 
     private ProposedCombination proposedCombination;
 
@@ -21,9 +22,9 @@ public class ProposedCombinationView extends WithConsoleView {
     public void read(){
         Error error;
         do {
-            new MessageView(Message.PROPOSE_COMBINATION).write();
-            error = this.checkError(this.console.readString());
-            new ErrorView(error).writeln();
+            Message.PROPOSE_COMBINATION.write();
+            error = this.checkError(Console.instance().readString());
+            error.writeln();
             if (error.notNull()) {
                 proposedCombination = new ProposedCombination();
             }
@@ -32,20 +33,20 @@ public class ProposedCombinationView extends WithConsoleView {
 
     private Error checkError(String characters){
         if (characters.length() != Combination.COMBINATION_LENGTH) {
-            return mastermind.models.Error.WRONG_LENGTH;
+            return Error.WRONG_LENGTH;
         }
         for (int i = 0; i < characters.length(); i++) {
             Color color = Color.getInstance(characters.charAt(i));
             if (color.isNull()) {
-                return mastermind.models.Error.WRONG_COLORS;
+                return Error.WRONG_COLORS;
             }
             for(int j=0; j<i; j++){
                 if (proposedCombination.getColors().get(j) == color) {
-                    return mastermind.models.Error.DUPLICATED;
+                    return Error.DUPLICATED;
                 }
             }
             proposedCombination.add(color);
         }
-        return mastermind.models.Error.NULL_ERROR;
+        return Error.NULL_ERROR;
     }
 }

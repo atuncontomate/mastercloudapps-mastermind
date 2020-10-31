@@ -7,6 +7,15 @@ public class Console {
 
     private BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
+    public static Console console;
+
+    public static Console instance() {
+        if (Console.console == null) {
+            Console.console = new Console();
+        }
+        return Console.console;
+    }
+
     public String readString(String title) {
         String input = null;
         this.write(title);
@@ -59,5 +68,20 @@ public class Console {
 
     public void writeError(String format) {
         System.out.println("FORMAT ERROR! " + "Enter a " + format + " formatted value.");
+    }
+
+    public int readInt(String title) {
+        int input = 0;
+        boolean ok = false;
+        do {
+            try {
+                input = Integer.parseInt(this.readString(title));
+                ok = true;
+            } catch (Exception ex) {
+                this.writeError("integer");
+            }
+            assert ok;
+        } while (!ok);
+        return input;
     }
 }

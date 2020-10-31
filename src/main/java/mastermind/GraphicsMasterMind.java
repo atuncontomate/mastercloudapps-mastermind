@@ -1,13 +1,12 @@
 package mastermind;
 
-import mastermind.views.MainView;
-import mastermind.views.graphics.GraphicsMainView;
+import mastermind.views.graphics.MainView;
 
 public class GraphicsMasterMind extends MasterMind{
 
     @Override
-    protected MainView createView() {
-        return new GraphicsMainView();
+    protected mastermind.views.MainView createView() {
+        return new MainView();
     }
 
     public static void main(String[] args) {

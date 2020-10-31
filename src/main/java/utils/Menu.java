@@ -29,7 +29,7 @@ public abstract class Menu {
             for (int i = 0; i < commands.size(); i++) {
                 console.writeln((i + 1) + ") " + commands.get(i).getTitle());
             }
-            option = console.readInt("") - 1;
+            option = Console.instance().readInt("") - 1;
             if (!new ClosedInterval(0, commands.size() - 1).isIncluded(option)) {
                 error = true;
             }
