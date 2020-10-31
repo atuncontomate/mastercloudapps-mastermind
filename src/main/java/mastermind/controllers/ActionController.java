@@ -3,11 +3,15 @@ package mastermind.controllers;
 import mastermind.models.ProposedCombination;
 import mastermind.models.Result;
 import mastermind.models.Session;
+import mastermind.models.impl.SessionImpl;
 
 public class ActionController extends Controller{
 
+    private SessionImpl session;
+
     public ActionController(Session session){
         super(session);
+        this.session = (SessionImpl) session;
     }
 
     public void add(ProposedCombination proposedCombination) {

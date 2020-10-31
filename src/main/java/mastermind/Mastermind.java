@@ -4,17 +4,18 @@ import mastermind.controllers.AcceptorController;
 import mastermind.controllers.Logic;
 import mastermind.views.MainView;
 
-public abstract class MasterMind {
+public abstract class Mastermind {
 
     private Logic logic;
 
     private MainView view;
 
-    protected MasterMind() {
+    protected Mastermind() {
         this.logic = new Logic();
         this.view = this.createView();
     }
 
+    protected abstract Logic createLogic();
     protected abstract MainView createView();
 
     protected void play() {

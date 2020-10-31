@@ -2,58 +2,31 @@ package mastermind.controllers;
 
 import mastermind.models.*;
 
-public class ProposalController extends Controller implements AcceptorController{
-
-    private ActionController actionController;
-    private UndoController undoController;
-    private RedoController redoController;
+public abstract class ProposalController extends Controller implements AcceptorController{
 
     public ProposalController(Session session){
         super(session);
-        this.actionController = new ActionController(session);
-        this.undoController = new UndoController(session);
-        this.redoController = new RedoController(session);
     }
 
-    public void add(ProposedCombination proposedCombination) {
-        this.actionController.add(proposedCombination);
-    }
+    public abstract void add(ProposedCombination proposedCombination);
 
-    public boolean isEndedGame() {
-        return this.actionController.isEndedGame();
-    }
+    public abstract boolean isEndedGame();
 
-    public int getAttempts() {
-        return this.actionController.getAttempts();
-    }
+    public abstract int getAttempts();
 
-    public boolean isBreakerWinner() {
-        return this.actionController.isBreakerWinner();
-    }
+    public abstract boolean isBreakerWinner();
 
-    public ProposedCombination getAttemptProposedCombination(int attempt){
-        return this.actionController.getAttemptProposedCombination(attempt);
-    }
+    public abstract ProposedCombination getAttemptProposedCombination(int attempt);
 
-    public Result getAttemptResult(int attempt){
-        return this.actionController.getAttemptResult(attempt);
-    }
+    public abstract Result getAttemptResult(int attempt);
 
-    public void undo() {
-        this.undoController.undo();
-    }
+    public abstract void undo();
 
-    public boolean undoable() {
-        return this.undoController.undoable();
-    }
+    public abstract boolean undoable();
 
-    public void redo() {
-        this.redoController.redo();
-    }
+    public abstract void redo();
 
-    public boolean redoable() {
-        return this.redoController.redoable();
-    }
+    public abstract boolean redoable();
 
     public void accept(ControllerVisitor controllerVisitor) {
         controllerVisitor.visit(this);

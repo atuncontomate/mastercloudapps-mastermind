@@ -8,6 +8,6 @@ public class StartView {
     public void interact(StartController startController) {
         Message.TITLE.writeln();
         new SecretCombinationView().writeln();
-        startController.next();
+        startController.start();
     }
 }

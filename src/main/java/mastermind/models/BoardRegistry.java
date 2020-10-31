@@ -10,7 +10,7 @@ public class BoardRegistry {
 
     private int firstPrevious;
 
-    BoardRegistry(Board board) {
+    public BoardRegistry(Board board) {
         this.board = board;
         this.reset();
     }
