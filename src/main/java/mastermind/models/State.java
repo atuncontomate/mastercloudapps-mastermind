@@ -1,5 +1,7 @@
 package mastermind.models;
 
+import mastermind.types.StateValue;
+
 public class State {
 
     private StateValue stateValue;

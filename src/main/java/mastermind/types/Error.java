@@ -1,4 +1,4 @@
-package mastermind.views;
+package mastermind.types;
 
 import utils.Console;
 

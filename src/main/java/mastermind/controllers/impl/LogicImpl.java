@@ -1,8 +1,7 @@
 package mastermind.controllers.impl;
 
 import mastermind.controllers.*;
-import mastermind.models.Session;
-import mastermind.models.StateValue;
+import mastermind.types.StateValue;
 import mastermind.models.impl.SessionImpl;
 
 public class LogicImpl extends Logic {

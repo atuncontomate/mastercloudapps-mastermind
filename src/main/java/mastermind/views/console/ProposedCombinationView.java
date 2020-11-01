@@ -1,7 +1,7 @@
 package mastermind.views.console;
 
 import mastermind.models.*;
-import mastermind.views.Error;
+import mastermind.types.Error;
 import mastermind.views.Message;
 import utils.Console;
 

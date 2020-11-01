@@ -1,6 +1,7 @@
 package mastermind.models.impl;
 
 import mastermind.models.*;
+import mastermind.types.StateValue;
 
 public class SessionImpl implements Session {
 

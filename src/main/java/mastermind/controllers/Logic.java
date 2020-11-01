@@ -1,7 +1,7 @@
 package mastermind.controllers;
 
 import mastermind.models.Session;
-import mastermind.models.StateValue;
+import mastermind.types.StateValue;
 
 import java.util.HashMap;
 import java.util.Map;
