@@ -17,7 +17,17 @@ public abstract class Combination {
         return colors;
     }
 
+    public boolean containsColorAt(Combination combination, int i){
+        return this.colors.contains(combination.colors.get(i));
+    }
+
+    public boolean matchesColorAt(Combination combination, int i){
+        assert i >= 0 && i < getWidth();
+        return this.colors.get(i).equals(combination.colors.get(i));
+    }
+
     public static int getWidth(){
         return COMBINATION_LENGTH;
     }
+
 }
