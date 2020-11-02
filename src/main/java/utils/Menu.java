@@ -1,11 +1,12 @@
 package utils;
 
+import mastermind.views.Message;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Menu {
 
-    private static final String OPTION = "----- Choose one option -----";
     private List<Command> commandList;
 
     public Menu() {
@@ -25,7 +26,7 @@ public abstract class Menu {
         do {
             error = false;
             console.writeln();
-            console.writeln(Menu.OPTION);
+            Message.OPTION.writeln();
             for (int i = 0; i < commands.size(); i++) {
                 console.writeln((i + 1) + ") " + commands.get(i).getTitle());
             }
