@@ -1,9 +1,8 @@
 package mastermind.controller;
 
-import mastermind.models.Board;
-import mastermind.models.ProposedCombination;
-import mastermind.models.Result;
-import mastermind.models.State;
+import mastermind.models.*;
+import mastermind.views.BoardView;
+import mastermind.views.ProposedCombinationView;
 
 public class ProposalController extends Controller {
 
@@ -11,37 +10,29 @@ public class ProposalController extends Controller {
         super(board, state);
     }
 
-    public void add(ProposedCombination proposedCombination) {
+    @Override
+    public void control() {
+        ProposedCombination proposedCombination = new ProposedCombination();
+        new ProposedCombinationView(proposedCombination).read();
+        this.add(proposedCombination);
+
+        BoardView boardView = new BoardView(this.board);
+        boardView.write();
+        if(this.isEndedGame()){
+            boardView.writeWinner();
+        }
+    }
+
+    private void add(ProposedCombination proposedCombination) {
         this.board.add(proposedCombination);
     }
 
-    public boolean isEndedGame() {
+    private boolean isEndedGame() {
         boolean isEndedGame = this.board.isEndedGame();
         if(isEndedGame){
             this.state.next();
         }
         return isEndedGame;
-    }
-
-    public int getAttempts() {
-        return this.board.getAttempts();
-    }
-
-    public boolean isBreakerWinner() {
-        return this.board.isBreakerWinner();
-    }
-
-    public ProposedCombination getAttemptProposedCombination(int attempt){
-        return this.board.getAttemptProposedCombination(attempt);
-    }
-
-    public Result getAttemptResult(int attempt){
-        return this.board.getAttemptResult(attempt);
-    }
-
-    @Override
-    public void accept(ControllerVisitor controllerVisitor) {
-        controllerVisitor.visit(this);
     }
 
 }

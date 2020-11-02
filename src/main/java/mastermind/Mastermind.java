@@ -1,5 +1,6 @@
-package mastermind.controller;
+package mastermind;
 
+import mastermind.controller.*;
 import mastermind.models.Board;
 import mastermind.models.State;
 import mastermind.models.StateValue;
@@ -7,11 +8,12 @@ import mastermind.models.StateValue;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Logic {
+public class Mastermind {
+
     private State state;
     private Map<StateValue, Controller> controllers;
 
-    public Logic() {
+    public Mastermind() {
         Board board = new Board();
         this.state = new State();
         this.controllers = new HashMap<StateValue, Controller>();
@@ -21,7 +23,17 @@ public class Logic {
         this.controllers.put(StateValue.EXIT, null);
     }
 
-    public Controller getController() {
-        return this.controllers.get(this.state.getValueState());
+    void play() {
+        Controller controller;
+        do {
+            controller = this.controllers.get(this.state.getValueState());
+            if (controller != null) {
+                controller.control();
+            }
+        } while (controller != null);
+    }
+
+    public static void main(String[] args) {
+        new Mastermind().play();
     }
 }

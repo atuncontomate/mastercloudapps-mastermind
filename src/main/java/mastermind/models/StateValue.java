@@ -4,5 +4,5 @@ public enum StateValue {
     START,
     PROPOSE,
     RESUME,
-    EXIT;
+    EXIT
 }

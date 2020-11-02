@@ -2,6 +2,7 @@ package mastermind.controller;
 
 import mastermind.models.Board;
 import mastermind.models.State;
+import mastermind.views.StartView;
 
 public class StartController extends Controller{
 
@@ -9,13 +10,9 @@ public class StartController extends Controller{
         super(board, state);
     }
 
-    public void next() {
+    @Override
+    public void control() {
+        new StartView().write();
         this.state.next();
     }
-
-    @Override
-    public void accept(ControllerVisitor controllerVisitor) {
-        controllerVisitor.visit(this);
-    }
-
 }

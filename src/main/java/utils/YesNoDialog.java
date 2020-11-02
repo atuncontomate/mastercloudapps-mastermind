@@ -1,6 +1,6 @@
 package utils;
 
-public class YesNoDialog extends WithConsoleView {
+public class YesNoDialog {
     private static final char AFFIRMATIVE = 'y';
     private static final char NEGATIVE = 'n';
     private static final String SUFFIX = "? (" +
@@ -16,11 +16,11 @@ public class YesNoDialog extends WithConsoleView {
 
         boolean error;
         do {
-            console.write(message);
-            this.answer = console.readChar(YesNoDialog.SUFFIX);
+            Console.instance().write(message);
+            this.answer = Console.instance().readChar(YesNoDialog.SUFFIX);
             error = !this.isAfirmative() && !this.isNegative();
             if (error) {
-                console.writeln(YesNoDialog.MESSAGE);
+                Console.instance().writeln(YesNoDialog.MESSAGE);
             }
         } while (error);
         return this.isAfirmative();

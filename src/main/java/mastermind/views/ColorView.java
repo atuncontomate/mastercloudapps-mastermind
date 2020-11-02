@@ -1,9 +1,9 @@
-package mastermind.views.console;
+package mastermind.views;
 
 import mastermind.models.Color;
-import utils.WithConsoleView;
+import utils.Console;
 
-public class ColorView extends WithConsoleView {
+public class ColorView {
 
     private Color color;
 
@@ -13,6 +13,6 @@ public class ColorView extends WithConsoleView {
 
     void write() {
         assert color != Color.NULL_COLOR;
-        this.console.write(color.getInitial());
+        Console.instance().write(color.getInitial());
     }
 }

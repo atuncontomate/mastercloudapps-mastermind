@@ -2,6 +2,7 @@ package mastermind.controller;
 
 import mastermind.models.Board;
 import mastermind.models.State;
+import mastermind.views.ResumeView;
 
 public class ResumeController extends Controller{
 
@@ -9,13 +10,13 @@ public class ResumeController extends Controller{
         super(board, state);
     }
 
-    public void clear() {
-        this.board.clear();
-        this.state.reset();
-    }
-
     @Override
-    public void accept(ControllerVisitor controllerVisitor) {
-        controllerVisitor.visit(this);
+    public void control() {
+        if (new ResumeView().read()){
+            this.board.clear();
+            this.state.reset();
+        } else {
+            this.state.next();
+        }
     }
 }

@@ -11,7 +11,7 @@ public class Result {
     }
 
     public boolean isWinnerResult(){
-        return blacks == Combination.COMBINATION_LENGTH;
+        return blacks == Combination.getWidth();
     }
 
     public int getBlacks(){

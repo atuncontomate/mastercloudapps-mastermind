@@ -12,7 +12,7 @@ public class SecretCombination extends Combination{
             this.colors.add(Color.get(i));
         }
         Random random = new Random(System.currentTimeMillis());
-        for (int i = 0; i < Color.length() - COMBINATION_LENGTH; i++) {
+        for (int i = 0; i < Color.length() - this.getWidth(); i++) {
             this.colors.remove(random.nextInt(this.colors.size()));
         }
         Collections.shuffle(this.colors);
@@ -23,9 +23,9 @@ public class SecretCombination extends Combination{
         int blacks = 0;
         int whites = 0;
 
-        if(proposedCombination.colors.size() == COMBINATION_LENGTH){
+        if(proposedCombination.colors.size() == this.getWidth()){
 
-            for(int i=0; i<COMBINATION_LENGTH; i++){
+            for(int i=0; i<this.getWidth(); i++){
                 if(proposedColors.get(i).equals(this.colors.get(i))){
                     blacks++;
                 } else if(this.colors.contains(proposedColors.get(i))) {
