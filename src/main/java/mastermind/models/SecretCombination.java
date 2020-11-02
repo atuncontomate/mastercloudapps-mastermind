@@ -19,16 +19,14 @@ public class SecretCombination extends Combination{
     }
 
     public Result getResult(Combination proposedCombination){
-        List<Color> proposedColors = proposedCombination.colors;
         int blacks = 0;
         int whites = 0;
 
         if(proposedCombination.colors.size() == COMBINATION_LENGTH){
-
             for(int i=0; i<COMBINATION_LENGTH; i++){
-                if(proposedColors.get(i).equals(this.colors.get(i))){
+                if(this.matchesColorAt(proposedCombination, i)){
                     blacks++;
-                } else if(this.colors.contains(proposedColors.get(i))) {
+                } else if(this.containsColorAt(proposedCombination, i)) {
                     whites++;
                 }
             }
