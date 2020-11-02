@@ -25,7 +25,7 @@ public class SecretCombination extends Combination{
         if(proposedCombination.colors.size() == COMBINATION_LENGTH){
 
             for(int i=0; i<COMBINATION_LENGTH; i++){
-                if(proposedCombination.matchesColorAt(this, i)){
+                if(this.matchesColorAt(proposedCombination, i)){
                     blacks++;
                 } else if(this.containsColorAt(proposedCombination, i)) {
                     whites++;
