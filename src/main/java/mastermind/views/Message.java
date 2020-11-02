@@ -12,8 +12,10 @@ public enum Message {
     BREAKER_LOST("You've lost!!! :-("),
     RESUME("RESUME? "),
     PROPOSE_COMBINATION("Propose a combination: "),
-    UNDO_COMMAND("Undo previous action"),
-    REDO_COMMAND("Redo previous action");
+    OPTION("----- Choose one option -----"),
+    ACTION_COMMAND("Propose Combination"),
+    UNDO_COMMAND("Undo previous Proposal"),
+    REDO_COMMAND("Redo previous Proposal");
 
     private String content;
 

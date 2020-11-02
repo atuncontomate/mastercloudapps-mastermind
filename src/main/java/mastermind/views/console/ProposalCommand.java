@@ -3,12 +3,13 @@ package mastermind.views.console;
 import mastermind.controllers.ProposalController;
 import mastermind.models.ProposedCombination;
 
+import static mastermind.views.Message.ACTION_COMMAND;
 import static mastermind.views.Message.PROPOSE_COMBINATION;
 
 public class ProposalCommand extends Command{
 
     public ProposalCommand(ProposalController proposalController){
-        super(PROPOSE_COMBINATION.getContent(), proposalController);
+        super(ACTION_COMMAND.getContent(), proposalController);
     }
 
     @Override
